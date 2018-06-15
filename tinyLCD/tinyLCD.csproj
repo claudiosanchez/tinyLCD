@@ -38,13 +38,16 @@
     <Reference Include="Microsoft.SPOT.Native" />
     <Reference Include="Microsoft.SPOT.TinyCore" />
     <Reference Include="Microsoft.SPOT.Graphics" />
-    <Reference Include="Netduino.Foundation">
-      <HintPath>..\packages\Netduino.Foundation.0.17.672\lib\netmf43\Netduino.Foundation.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.SPOT.Hardware" />
     <Reference Include="Microsoft.SPOT.Hardware.PWM" />
     <Reference Include="Microsoft.SPOT.Hardware.SerialPort" />
     <Reference Include="SecretLabs.NETMF.Hardware.Netduino" />
+    <Reference Include="Netduino.Foundation.Displays.SSD1306">
+      <HintPath>..\packages\Netduino.Foundation.SSD1306.0.10.505\lib\netmf43\Netduino.Foundation.Displays.SSD1306.dll</HintPath>
+    </Reference>
+    <Reference Include="Netduino.Foundation">
+      <HintPath>..\packages\Netduino.Foundation.0.10.505\lib\netmf43\Netduino.Foundation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

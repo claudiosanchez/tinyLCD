@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using Microsoft.SPOT;
+using Microsoft.SPOT.Hardware;
 
 namespace tinyLCD
 {
@@ -26,7 +27,14 @@ namespace tinyLCD
             {
               Debug.Print (item.ToString());
             }
-            Thread.Sleep(Timeout.Infinite);
+
+            var hwp = new HardwareProvider();
+            Cpu.Pin sd;
+            Cpu.Pin sc;
+
+            hwp.GetI2CPins(out sc, out sd);
+
+            //Thread.Sleep(Timeout.Infinite);
         }
     }
 }
