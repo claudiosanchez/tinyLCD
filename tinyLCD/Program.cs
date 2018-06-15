@@ -8,9 +8,22 @@ namespace tinyLCD
     {
         public static void Main()
         {
-            //var oled = new Netduino.Foundation.Displays.SSD1306();
+            var oled = new Netduino.Foundation.Displays.SSD1306();
 
-            //oled.Clear(true);
+            oled.Clear(true);
+
+            for (int y = 0; y < 64; y++){
+                
+                for (int x = 0; x < 128; x++)
+                {
+                    var shouldDisplay = x % 2 == 0 ? true : false;
+                    oled.DrawPixel(x, y, shouldDisplay);
+                }
+                oled.Show();
+            }
+           
+
+
             //varde display = new GraphicsLibrary(oled);
 
             //display.Clear(true);
