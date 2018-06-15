@@ -32,25 +32,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.SPOT.Hardware" />
-    <Reference Include="Microsoft.SPOT.Hardware.PWM" />
-    <Reference Include="Microsoft.SPOT.Hardware.SerialPort" />
     <Reference Include="Microsoft.SPOT.IO" />
+    <Reference Include="System.IO" />
+    <Reference Include="System" />
     <Reference Include="Microsoft.SPOT.Native" />
-    <Reference Include="Microsoft.SPOT.TinyCore" />
-    <Reference Include="SecretLabs.NETMF.Hardware.Netduino" />
-    <Reference Include="Netduino.Foundation">
-      <HintPath>..\packages\Netduino.Foundation.0.7.0\lib\netmf43\Netduino.Foundation.dll</HintPath>
-    </Reference>
-    <Reference Include="Netduino.Foundation.Displays.GraphicsLibrary">
-      <HintPath>..\packages\Netduino.Foundation.GraphicsLibrary.0.7.0\lib\netmf43\Netduino.Foundation.Displays.GraphicsLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Netduino.Foundation.Displays.SSD1306">
-      <HintPath>..\packages\Netduino.Foundation.SSD1306.0.7.0\lib\netmf43\Netduino.Foundation.Displays.SSD1306.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\.NET Micro Framework\$(TargetFrameworkVersion)\CSharp.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\.NET Micro Framework\$(TargetFrameworkVersion)\CSharp.targets')" />
   <Import Project="$([System.Environment]::GetFolderPath(SpecialFolder.LocalApplicationData))\.NETMicroFramework\xbuild\Microsoft\.NET Micro Framework\$(TargetFrameworkVersion)\CSharp.targets" Condition="!Exists('$(MSBuildExtensionsPath32)\Microsoft\.NET Micro Framework\$(TargetFrameworkVersion)\CSharp.targets')" />
