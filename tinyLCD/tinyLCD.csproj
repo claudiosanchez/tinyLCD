@@ -30,6 +30,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GraphicsLibrary.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SPOT.IO" />
@@ -48,6 +49,7 @@
     <Reference Include="Netduino.Foundation">
       <HintPath>..\packages\Netduino.Foundation.0.10.505\lib\netmf43\Netduino.Foundation.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

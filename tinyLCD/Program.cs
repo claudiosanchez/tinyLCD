@@ -1,6 +1,9 @@
 ﻿using System.Threading;
 using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
+using Netduino.Foundation.Displays;
+using tinyLCD;
+using static Microsoft.SPOT.Hardware.I2CDevice;
 
 namespace tinyLCD
 {
@@ -8,23 +11,62 @@ namespace tinyLCD
     {
         public static void Main()
         {
-            var oled = new Netduino.Foundation.Displays.SSD1306();
+            var device = new SSD1306();
 
-            oled.Clear(true);
+            DisplayLinesOnDisplay(device);
 
-            for (int y = 0; y < 64; y++){
-                
+            DrawText(device,0, 0, 2, "HO");
+            DrawText(device,0, 10, 2, "HLO");
+            DrawText(device, 0, 20, 2, "HELLO");
+
+            device.Show();
+        }
+
+        private static void DisplayLinesOnDisplay(SSD1306 device)
+        {
+            for (int y = 0; y < 64; y++)
+            {
                 for (int x = 0; x < 128; x++)
                 {
                     var shouldDisplay = x % 2 == 0 ? true : false;
-                    oled.DrawPixel(x, y, shouldDisplay);
+                    device.DrawPixel(x, y, shouldDisplay);
                 }
-                oled.Show();
             }
-           
+        }
+
+        /// <summary>
+        ///     Draw a text message on the display using the current font.
+        /// </summary>
+        /// <param name="x">Abscissa of the location of the text.</param>
+        /// <param name="y">Ordinate of the location of the text.</param>
+        /// <param name="spacing">Number of pixels between characters.</param>
+        /// <param name="text">Text to display.</param>
+        /// <param name="wrap">Wrap the text at the end of the display?</param>
+        public static void DrawText(SSD1306 device, int x, int y, int spacing, string text, bool wrap = false)
+        {
+           // var font = new Font8x8();
+
+            var fontHeight = 8;
+            
+                byte[] bitMap = new byte[text.Length * fontHeight];
+
+            for (int index = 0; index < text.Length; index++)
+            {
+                byte[] characterMap = new byte[] { 0x3E, 0x63, 0x7B, 0x7B, 0x7B, 0x03, 0x1E, 0x00 };
+
+                for (int characterSegment = 0; characterSegment < fontHeight; characterSegment++)
+                {
+                    bitMap[index + (characterSegment * text.Length)] = characterMap[characterSegment];
+                }
+            }
+            device.DrawBitmap(x, y, text.Length, fontHeight, bitMap,Netduino.Foundation.Displays.DisplayBase.BitmapMode.And);
 
 
-            //varde display = new GraphicsLibrary(oled);
+        }
+
+        private void CodeNotBeingUsed()
+        {
+            //var display = new GraphicsLibrary(oled);
 
             //display.Clear(true);
             //display.CurrentFont = new Font8x8();
@@ -34,20 +76,23 @@ namespace tinyLCD
             //display.DrawLine(0, 60, 127, 60);
             //display.Show();
 
-            var fileSystems = Microsoft.SPOT.IO.VolumeInfo.GetFileSystems();
-           
-            foreach (var item in fileSystems)
-            {
-              Debug.Print (item.ToString());
-            }
+            //var fileSystems = Microsoft.SPOT.IO.VolumeInfo.GetFileSystems();
 
-            var hwp = new HardwareProvider();
-            Cpu.Pin sd;
-            Cpu.Pin sc;
+            //foreach (var item in fileSystems)
+            //{
+            //  Debug.Print (item.ToString());
+            //}
 
-            hwp.GetI2CPins(out sc, out sd);
+            //var hwp = new HardwareProvider();
+            //Cpu.Pin sd;
+            //Cpu.Pin sc;
+
+            //hwp.GetI2CPins(out sc, out sd);
+
+
 
             //Thread.Sleep(Timeout.Infinite);
+
         }
     }
 }
